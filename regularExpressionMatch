@@ -1,0 +1,38 @@
+/*Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element. */
+
+class Solution {
+    public boolean isMatch(String s, String p) 
+    {
+        // Create a DP table with dimensions (s.length() + 1) x (p.length() + 1)
+        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+
+        // Base case: empty string and empty pattern match
+        dp[0][0] = true;
+
+        // Handle patterns like a* or a*b* that can match an empty string
+        for (int j = 1; j <= p.length(); j++) {
+            if (p.charAt(j - 1) == '*') {
+                dp[0][j] = dp[0][j - 2];
+            }
+        }
+
+        // Fill the DP table
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 1; j <= p.length(); j++) {
+                if (p.charAt(j - 1) == s.charAt(i - 1) || p.charAt(j - 1) == '.') {
+                    dp[i][j] = dp[i - 1][j - 1]; // Match current character
+                } else if (p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i][j - 2]; // Match 0 occurrences of the char before '*'
+                    if (p.charAt(j - 2) == s.charAt(i - 1) || p.charAt(j - 2) == '.') {
+                        dp[i][j] |= dp[i - 1][j]; // Match 1 or more occurrences
+                    }
+                }
+            }
+        }
+
+        return dp[s.length()][p.length()]; // Final result
+    }
+}
