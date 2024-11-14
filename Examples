@@ -1,0 +1,100 @@
+//Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer.
+
+class Solution {
+    public int myAtoi(String s) 
+    {
+        int output=0, signcounter = 0;
+        int INT_MAX = 2147483647, INT_MIN = -2147483648;
+        boolean pos = true, valid = true, digitstrt= false;
+
+        for(char c:s.toCharArray())
+        {
+            if(valid)
+            {
+                switch(c)
+                {
+                    case ' ': 
+                        if(digitstrt) valid = false;break;
+                    case '+': pos = true;signcounter++; if(digitstrt || signcounter >1) valid = false; break;
+                    case '-': pos = false; signcounter++; if(digitstrt || signcounter >1) valid = false; break;
+                    case '1': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 1;
+                        else 
+                            return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '2': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 2;
+                        else 
+                        {
+                        return pos ? INT_MAX : INT_MIN;
+                        }
+                        digitstrt = true; 
+                        break;
+                    case '3': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 3;
+                        else 
+                        {
+                        return pos ? INT_MAX : INT_MIN;
+                        }
+                        digitstrt = true; 
+                        break;
+                    case '4': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 4;
+                        else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '5': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 5;
+                        else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '6': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 6;
+                        else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '7': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 7;
+                        else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '8': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 8;
+                       else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '9': 
+                        if(check <= 2147483647)
+                            output = (output *10) + 9;
+                        else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    case '0':
+                        if(check <= 2147483647)
+                            output = (output *10) + 0;
+                        else 
+                        return pos ? INT_MAX : INT_MIN;
+                        digitstrt = true; 
+                        break;
+                    default: valid = false;
+                }
+            }
+        }
+        return pos ? output : output*-1;
+    }
+}
